@@ -1,0 +1,10 @@
+.example-card,
+mat-card-header {
+  justify-content: center;
+  padding: 15px 0;
+  text-align: center;
+}
+
+img {
+  max-width: 300px;
+}
