@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/product';
+import { Size } from 'src/app/models/size';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -25,10 +26,12 @@ export class ProductPageComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.productService.getProduct(id).subscribe((p) => {
-      console.log('getProduct() called');
       this.product = p;
       this.imageUrl = p?.imageUrl || '';
-      console.log('p = ', p);
     });
+  }
+
+  onSizeChange(size: any) {
+    console.log(size);
   }
 }
