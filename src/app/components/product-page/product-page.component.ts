@@ -12,6 +12,7 @@ import { ProductService } from 'src/app/service/product.service';
 export class ProductPageComponent implements OnInit {
   product: Product | undefined;
   imageUrl: string = '';
+  price: number = 0;
 
   constructor(
     private productService: ProductService,
@@ -28,10 +29,25 @@ export class ProductPageComponent implements OnInit {
     this.productService.getProduct(id).subscribe((p) => {
       this.product = p;
       this.imageUrl = p?.imageUrl || '';
+      this.price = p?.price || 0;
     });
   }
 
   onSizeChange(size: any) {
-    console.log(size);
+    //console.log(size);
+
+    if (this.product?.price !== undefined)
+      switch (size) {
+        case Size.MEDIUM: {
+          this.price = this.product.price * 1.2;
+          break;
+        }
+        case Size.LARGE: {
+          this.price = this.product.price * 1.5;
+          break;
+        }
+        default:
+          this.price = this.product.price;
+      }
   }
 }
